@@ -46,6 +46,13 @@ plantas_companeras(ivy, orchid).
 plantas_companeras(bamboo, rose).
 plantas_companeras(rose, bamboo).
 
+%1
 tipo_arbusto(Planta) :- planta(Planta, tipo(arbusto)).
 florece_primavera(Planta):- planta(Planta, epoca(floracion, primavera)).
 tiene_color(Planta, Color) :- planta(Planta, color(Color)).
+
+%2
+riego_especial(Planta):- tipo_arbusto(Planta), planta(Planta, epoca(floracion, verano).
+atrae_insectosB(Planta):- tiene_color(Planta, amarillo).
+atrae_insectosB(Planta):- tiene_color(Planta, rojo).
+es_alta(Planta):- not(planta(Planta, tipo(flor)).
