@@ -56,3 +56,7 @@ riego_especial(Planta):- tipo_arbusto(Planta), planta(Planta, epoca(floracion, v
 atrae_insectosB(Planta):- tiene_color(Planta, amarillo).
 atrae_insectosB(Planta):- tiene_color(Planta, rojo).
 es_alta(Planta):- not(planta(Planta, tipo(flor)).
+
+
+% 3. Plantas Cortas y Flores:
+plantas_cortas_flores(Planta) :- planta(Planta, altura(corta)), planta(Planta, tipo(flor)).
