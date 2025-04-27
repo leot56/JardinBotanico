@@ -62,6 +62,18 @@ es_alta(Planta):- not(planta(Planta, tipo(flor)).
 plantas_cortas_flores(Planta) :- planta(Planta, altura(corta)), planta(Planta, tipo(flor)).
 
 %4
+
+pista(arbol_rojo, tipo(arbusto)).
+pista(arbol_rojo, altura(media)).
+
+relacionar_planta_observador(Planta, Observador) :-
+    forall(pista(Observador, Caracteristica), planta(Planta, Caracteristica)).
+
+contar_pistas(Planta, Cantidad) :-
+    findall(Caracteristica, planta(Planta, Caracteristica), Caracteristicas),
+    length(Caracteristicas, Cantidad).
+
+%4
 pista(arbol_rojo, tipo(arbusto)).
 pista(arbol_rojo, altura(media)).
 pista(flor_amarilla, color(amarillo)).
@@ -92,7 +104,16 @@ cumple_pista(Planta, Caracteristica):- pista(_, Caracteristica), planta(Planta, 
 relaciona_planta_observador(Planta, Observador) :-
     forall(pista(Observador, Caracteristica), cumple_pista(Planta, Caracteristica)).
 
-%5
+%5 
+cumple_pista(Planta, Caracteristica) :-
+    pista(_, Caracteristica),
+    planta(Planta, Caracteristica).
+
+relaciona_planta_observador(Planta, Observador) :-
+    forall(pista(Observador, Caracteristica), cumple_pista(Planta, Caracteristica)).
+
+
+%6
 cantidad_pistas_cumple(Planta, Count):- 
     findall(Pista, cumple_pista(Planta, Pista), Pistas),
     length(Pistas, Count).
