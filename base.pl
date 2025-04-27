@@ -60,3 +60,45 @@ es_alta(Planta):- not(planta(Planta, tipo(flor)).
 
 % 3. Plantas Cortas y Flores:
 plantas_cortas_flores(Planta) :- planta(Planta, altura(corta)), planta(Planta, tipo(flor)).
+
+%4
+pista(arbol_rojo, tipo(arbusto)).
+pista(arbol_rojo, altura(media)).
+pista(flor_amarilla, color(amarillo)).
+pista(flor_amarilla, tipo(flor)).
+pista(planta_verde, color(verdes)).
+pista(planta_verde, altura(baja)).
+pista(trepadora_todo_ano, tipo(plantas_enredaderas)).
+pista(trepadora_todo_ano, epoca(floracion, todo_el_ano)).
+pista(flor_primavera, epoca(floracion, primavera)).
+pista(flor_corta, altura(corta)).
+pista(planta_alta, altura(alta)).
+pista(planta_verano, epoca(floracion, verano)).
+pista(arbusto_primavera, tipo(arbusto)).
+pista(arbusto_primavera, epoca(floracion, primavera)).
+pista(flor_morada_primavera, color(purple)).
+pista(flor_morada_primavera, epoca(floracion, primavera)).
+pista(pasto_alto, tipo(pasto)).
+pista(pasto_alto, altura(alta)).
+pista(suculenta_verano_baja, tipo(suculenta)).
+pista(suculenta_verano_baja, epoca(floracion, verano)).
+pista(suculenta_verano_baja, altura(baja)).
+pista(helecho_verde_mediano, tipo(helecho)).
+pista(helecho_verde_mediano, color(verdes)).
+pista(helecho_verde_mediano, altura(media)).
+
+cumple_pista(Planta, Caracteristica):- pista(_, Caracteristica), planta(Planta, Caracteristica).
+
+relaciona_planta_observador(Planta, Observador) :-
+    forall(pista(Observador, Caracteristica), cumple_pista(Planta, Caracteristica)).
+
+%5
+cantidad_pistas_cumple(Planta, Count):- 
+    findall(Pista, cumple_pista(Planta, Pista), Pistas),
+    length(Pistas, Count).
+     
+atrae_mas_visitas(Planta, Companiera):-
+    plantas_companeras(Planta, Companiera),
+    cantidad_pistas_cumple(Planta, MisVisitas),
+    cantidad_pistas_cumple(Companiera, SusVisitas),
+    MisVisitas > SusVisitas.
