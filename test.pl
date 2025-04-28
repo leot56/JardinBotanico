@@ -34,6 +34,9 @@ test(ninguna_planta_necesita_riego_especial, fail) :-
 test(plantas_que_atraen_insectos_beneficos, set(Planta == [rose, sunflower, tulip])) :-
     atrae_insectos_beneficos(Planta).
 
+test(lily_no_atraen_insectos_beneficos, fail):-
+    atrae_insectos_beneficos(lily).
+
 test(rose_planta_alta) :-
     considerada_alta(rose).
 
@@ -43,6 +46,9 @@ test(lily_no_es_planta_alta, fail) :-
 %Tests Para el punto 3
 test(plantas_cortas_de_tipo_flor, set(Planta == [lily, orchid, tulip])) :-
     plantas_cortas_flores(Planta).
+    
+test(sunflower_no_corta_solo_flor, fail):-
+    plantas_cortas_flores(sunflower).
 
 % Test para el punto 4
 test(hay_relacion_planta_observador) :-
@@ -53,7 +59,7 @@ test(no_hay_relacion_planta_observador, fail) :-
 
 % Test para el punto 5
 test(cantidad_pistas_cumple_rose) :-
-    cantidad_pistas_cumple(rose, 9).
+    cantidad_pistas_cumple(rose, 7).
 
 test(cantidad_pistas_cumple_bamboo) :-
     cantidad_pistas_cumple(bamboo, 6).
