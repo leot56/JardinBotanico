@@ -112,8 +112,6 @@ cumple_pista(Planta, Caracteristica) :-
 relaciona_planta_observador(Planta, Observador) :-
     forall(pista(Observador, Caracteristica), cumple_pista(Planta, Caracteristica)).
 
-
-%6
 cantidad_pistas_cumple(Planta, Count):- 
     findall(Pista, cumple_pista(Planta, Pista), Pistas),
     length(Pistas, Count).
