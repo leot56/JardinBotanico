@@ -63,9 +63,6 @@ plantas_cortas_flores(Planta) :- planta(Planta, altura(corta)), planta(Planta, t
 
 %4
 
-pista(arbol_rojo, tipo(arbusto)).
-pista(arbol_rojo, altura(media)).
-
 relacionar_planta_observador(Planta, Observador) :-
     forall(pista(Observador, Caracteristica), planta(Planta, Caracteristica)).
 
@@ -73,7 +70,6 @@ contar_pistas(Planta, Cantidad) :-
     findall(Caracteristica, planta(Planta, Caracteristica), Caracteristicas),
     length(Caracteristicas, Cantidad).
 
-%4
 pista(arbol_rojo, tipo(arbusto)).
 pista(arbol_rojo, altura(media)).
 pista(flor_amarilla, color(amarillo)).
