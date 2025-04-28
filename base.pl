@@ -52,17 +52,17 @@ florece_primavera(Planta):- planta(Planta, epoca(floracion, primavera)).
 tiene_color(Planta, Color) :- planta(Planta, color(Color)).
 
 %2
-riego_especial(Planta):- tipo_arbusto(Planta), planta(Planta, epoca(floracion, verano).
-atrae_insectosB(Planta):- tiene_color(Planta, amarillo).
-atrae_insectosB(Planta):- tiene_color(Planta, rojo).
-es_alta(Planta):- not(planta(Planta, tipo(flor)).
+requiere_riego_especial(Planta):- tipo_arbusto(Planta), planta(Planta, epoca(floracion, verano).
+atrae_insectos_beneficos(Planta):- tiene_color(Planta, amarillo).
+atrae_insectos_beneficos(Planta):- tiene_color(Planta, rojo).
+considerada_alta(Planta):- not(planta(Planta, tipo(flor)).
 
 
 % 3. Plantas Cortas y Flores:
 plantas_cortas_flores(Planta) :- planta(Planta, altura(corta)), planta(Planta, tipo(flor)).
 
 %4
-relacionar_planta_observador(Planta, Observador) :-
+relaciona_planta_observador(Planta, Observador) :-
     forall(pista(Observador, Caracteristica), planta(Planta, Caracteristica)).
 
 pista(arbol_rojo, tipo(arbusto)).
