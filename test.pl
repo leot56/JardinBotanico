@@ -63,5 +63,12 @@ test(rose_atrae_mas_visitas_que_bamboo) :-
 
 test(ivy_atrae_mas_visitas_que_orchid) :-
     atrae_mas_visitas(ivy, orchid).
+    
+% Test para el punto 6
+test(rose_no_atrae_mas_visitas_que_bamboo, fail) :-
+    atrae_mas_visitas(rose, bamboo).
+
+test(ivy_atrae_mas_visitas_que_orchid) :-
+    atrae_mas_visitas(ivy, orchid).
 
 :- end_tests(jardin_botanico).
