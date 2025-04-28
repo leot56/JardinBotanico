@@ -67,7 +67,7 @@ test(cantidad_pistas_cumple_bamboo) :-
 test(rose_atrae_mas_visitas_que_bamboo) :-
     atrae_mas_visitas(rose, bamboo).
 
-test(ivy_atrae_mas_visitas_que_orchid) :-
-    atrae_mas_visitas(ivy, orchid).
+test(bamboo_no_atrae_mas_visitas_que_rose, fail) :-
+    atrae_mas_visitas(bamboo, rose).
     
 :- end_tests(jardin_botanico).
