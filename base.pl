@@ -52,14 +52,32 @@ florece_primavera(Planta):- planta(Planta, epoca(floracion, primavera)).
 tiene_color(Planta, Color) :- planta(Planta, color(Color)).
 
 %2
-requiere_riego_especial(Planta):- tipo_arbusto(Planta), planta(Planta, epoca(floracion, verano)).
-atrae_insectos_beneficos(Planta):- tiene_color(Planta, amarillo).
-atrae_insectos_beneficos(Planta):- tiene_color(Planta, rojo).
-considerada_alta(Planta):- not(planta(Planta, tipo(flor))).
+%a las plantas que requiere riego especial si es un arbusto y florece en verano.
+planta(Planta, requiere(riego_especial)) :-
+    planta(Planta, tipo(arbusto)),
+    planta(Planta, epoca(floracion, verano)).
 
+%b las plantas de color rojo atraen insectos beneficos.
+planta(Planta, atrae(insectos_beneficos)) :-
+    planta(Planta, color(rojo)).
 
-% 3. Plantas Cortas y Flores:
-plantas_cortas_flores(Planta) :- planta(Planta, altura(corta)), planta(Planta, tipo(flor)).
+% las plantas de color amarillo atraen insectos beneficos.
+planta(Planta, atrae(insectos_beneficos)) :-
+    planta(Planta, color(amarillo)).
+
+%c plantas que no se connsideran altas al ser flor
+planta(Planta, considerada(alta)) :-
+    planta(Planta, tipo(Tipo)),
+    Tipo \= flor.
+
+%3. Plantas que son Cortas y Flores:
+
+corta_y_flor(Planta) :-
+    planta(Planta, tipo(flor)),
+    planta(Planta, altura(corta)).
+
+plantas_cortas_flores(Plantas) :-
+    findall(Planta, corta_y_flor(Planta), Plantas).
 
 %4
 relaciona_planta_observador(Planta, Observador) :-
